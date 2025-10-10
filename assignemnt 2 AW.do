@@ -69,8 +69,34 @@ tab students_in_secondary public_participation
 ssc install blindschemes
 set scheme plottig
 
-*2 
+*2 Custom Histograms
 
-hist fhn_fotnsc 
-hist fhp_score5
+hist fhn_fotnsc , name(hist1, replace) bins(5) freq
+hist fhp_score5 , name(hist2, replace) bins(10) freq
+
+*3 Scatter Plot
+
+scatter fhn_fotnsc fhp_score5
+
+*It is difficult to determine causal relationships from a scatter plot. Depending on the variables you could make an intuitive guess but it would be really easy to be wrong and make an error of logical reasoning. The two variables defintely seem to be correlated but I cannot say is their is a causal relationship. For example it could be spurious.
+
+
+*PART 3
+
+*1 
+sum pei_peii qs_proff
+describe pei_peii qs_proff
+* qs_proff also know as ofessional Public Administration is a measure of how professional rather than politicized a states administration is. It is based off of other measures such as how closed or open and administration is. 
+
+*pei_peii also know as perception of Electoral Integrity Index is an index that determines how a states electoral process matches up to international norms and standards. It is based off experts' answers to a series of questions.
+
+*Sescribing the variables gives us technical info regarding how they are stored in stata. While summarizing them gives us some info regarding the actual data. "Obs" tells us home any states are represented. We also get the average score, the min/max scores for each and the std deviation, a measure of spread, giving us an idea of how far from the mean most data lies. For qs_proff higher values mean more profresional and for pei_peii higher values mean higher perceived integrity
+
+*2 
+sc pei_peii qs_proff , name(graph1)
+
+*In the scatterplot we can see that states that have higher perceptions of electoral integrity tend to have more professional administrations. I am making this obeservation based on looking that the top right and the bottom left sections of the plot. The middle section there is more variance and it's much harder to see a correclation. 
+
+*3
+* The scatterplot shows a weak degree of corellation given the weak correlation and that fact that scatterplots don't show causal relationships it is difficult to say. If I were forced to guess I would say that as more public facing admin causes greater degree of electoral integrity becuase assuming the election is run by a part of the admin it would be more open if the admin is more professional. where a political admin would be running a politcalized election. 
 
